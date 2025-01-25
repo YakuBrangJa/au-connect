@@ -8,36 +8,48 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        title: 'Tabs',
+        tabBarActiveTintColor: Colors.primary,
         headerShown: false,
-        tabBarButton: HapticTab,
+        // tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
-          default: {},
+          default: {
+
+          },
         }),
       }}>
       <Tabs.Screen
         name="index"
         options={{
+          // show
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="house" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="messages"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Messages',
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="message" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="person" color={color} />,
         }}
       />
     </Tabs>
