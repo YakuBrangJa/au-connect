@@ -40,7 +40,7 @@ export default function RootLayout() {
         }} />
         <Stack.Screen name='(root)' options={{
           headerShown: false,
-          animationTypeForReplace: 'pop'
+          animation: 'fade'
         }} />
         {/* <Slot routerOptions={{
 
