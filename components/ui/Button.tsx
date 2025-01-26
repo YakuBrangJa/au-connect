@@ -5,21 +5,18 @@ import {cn} from '@/libs/cn'
 import {cva, VariantProps} from 'class-variance-authority';
 
 export const buttonVariants = cva(
-  "rounded-xl justify-center",
+  "rounded-[9px] justify-center",
   {
     variants: {
       variant: {
-        default:
-          "bg-primary",
-        outline:
-          "border border-primary/80",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        default: "bg-primary",
+        outline: "border border-[1.15px] border-primary/80",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
       },
       size: {
         lg: "h-[52px] px-5",
         default: "h-[46px] px-5",
-        sm: "h-[40px] px-4",
+        sm: "h-[37px] px-4",
       },
     },
     defaultVariants: {
@@ -39,7 +36,7 @@ const buttonTextVariants = cva("text-center font-semibold ", {
     size: {
       lg: '',
       default: '',
-      sm: '',
+      sm: 'text-[13px]',
     }
   },
   defaultVariants: {

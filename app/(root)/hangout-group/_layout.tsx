@@ -5,7 +5,5 @@ export default function HomeLayout () {
     headerShown: false,
     headerBackTitle: 'Back',
     headerBackButtonDisplayMode: 'minimal',
-    animationTypeForReplace: 'pop',
-    animationDuration: 300
   }} />;
 }

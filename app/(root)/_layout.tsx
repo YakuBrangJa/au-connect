@@ -15,10 +15,20 @@ export default function TabLayout () {
   return (
     <Tabs
       screenOptions={{
+        animation: 'shift',
+        transitionSpec: {
+          animation: 'timing',
+          config: {
+            duration: 100,
+            delay: 0,
+            // easing: (num) => 0.1,
+            // bounciness: 10
+          },
+        },
         title: 'Tabs',
         tabBarActiveTintColor: Colors.primary,
         headerShown: false,
-        // tabBarButton: HapticTab,
+        tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
@@ -31,26 +41,31 @@ export default function TabLayout () {
         }),
       }}>
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           title: 'Home',
-          href: '/home',
           tabBarIcon: ({color}) => <IconSymbol size={28} name="house" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="study-group"
+        options={{
+          title: 'Study',
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="23.square" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="hangout-group"
+        options={{
+          title: 'Hangout',
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="arrow.up.backward.square" color={color} />,
         }}
       />
       <Tabs.Screen
         name="messages"
         options={{
           title: 'Messages',
-          href: '/messages',
           tabBarIcon: ({color}) => <IconSymbol size={28} name="message" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="pomodoro"
-        options={{
-          title: 'Pomodoro',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="clock" color={color} />,
         }}
       />
       <Tabs.Screen
