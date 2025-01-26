@@ -31,7 +31,21 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Slot routerOptions={{}} />
+      <Stack screenOptions={{
+        // headerShown: false,
+        // animationTypeForReplace: 'pop'
+      }}>
+        <Stack.Screen name='index' options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen name='(root)' options={{
+          headerShown: false,
+          animationTypeForReplace: 'pop'
+        }} />
+        {/* <Slot routerOptions={{
+
+        }} /> */}
+      </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
