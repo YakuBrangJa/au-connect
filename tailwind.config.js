@@ -17,8 +17,8 @@ module.exports = {
         primary: "hsl(357 74% 57%)",
         "primary-foreground": "hsl(0 0% 98%)",
 
-        secondary: "hsl(0 0% 96%)",
-        "secondary-foreground": "hsl(0 0% 5%)",
+        secondary: "hsl(216 12% 88%)",
+        "secondary-foreground": "hsl(222.2 47.4% 11.2%)",
 
         muted: "hsl(0 0% 96%)",
         "muted-foreground": "hsl(0 0% 45%)",

@@ -5,7 +5,7 @@ import {Text} from 'react-native'
 function PomodoroScreen () {
   return (
     <ThemedView>
-      <Text>Pomodoro page</Text>
+      <Text>Notification page</Text>
     </ThemedView>
   )
 }

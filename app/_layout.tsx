@@ -35,13 +35,12 @@ export default function RootLayout() {
         // headerShown: false,
         // animationTypeForReplace: 'pop'
       }}>
-        <Stack.Screen name='index' options={{
-          headerShown: false,
-        }} />
+        <Stack.Screen name='index' options={{headerShown: false}} />
         <Stack.Screen name='(root)' options={{
           headerShown: false,
           animation: 'fade'
         }} />
+        <Stack.Screen name='notification' options={{headerShown: true, headerBackTitle: 'Home'}} />
         {/* <Slot routerOptions={{
 
         }} /> */}

@@ -14,7 +14,7 @@ function WelcomeScreen () {
           <View className='flex-row justify-center bg-transparent'>
             <Image source={require('../assets/images/welcome.png')} className='w-[250px] h-[190px]' />
           </View>
-          <Button className='w-full' onPress={() => router.replace('/(root)')}>Get Started</Button>
+          <Button className='w-full' onPress={() => router.replace('/(root)/home')}>Get Started</Button>
         </View>
       </SafeAreaView>
     </ThemedView>

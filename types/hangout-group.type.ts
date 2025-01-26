@@ -7,6 +7,7 @@ export type HangoutGroup = {
   location: string,
   description: string,
   participantLimit?: number,
+  participantCount?: number,
   category: HangoutGroupCategory[]
   coverURL: any
 } 

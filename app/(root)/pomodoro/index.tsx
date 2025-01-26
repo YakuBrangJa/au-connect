@@ -4,13 +4,13 @@ import React from 'react'
 import {Pressable, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 
-function MessagePage () {
+function PomodoroPage () {
 
   return (
     <ThemedView className='flex-1'>
       <SafeAreaView className='flex-1'>
         <View className='p-4 flex-row justify-between items-center'>
-          <ThemedText type='title'>Messages</ThemedText>
+          <ThemedText type='title'>Pomodoro</ThemedText>
 
         </View>
       </SafeAreaView>
@@ -18,4 +18,4 @@ function MessagePage () {
   )
 }
 
-export default MessagePage
+export default PomodoroPage

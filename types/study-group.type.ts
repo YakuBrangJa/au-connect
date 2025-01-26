@@ -7,6 +7,7 @@ export type StudyGroup = {
   location: string,
   description: string,
   participantLimit?: number,
+  participantCount?: number,
   category: StudyGroupCategory[]
   coverURL: any
 } 

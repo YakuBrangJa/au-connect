@@ -25,7 +25,7 @@ export default function TabLayout () {
             // bounciness: 10
           },
         },
-        title: 'Tabs',
+        title: 'Root',
         tabBarActiveTintColor: Colors.primary,
         headerShown: false,
         tabBarButton: HapticTab,
@@ -41,7 +41,7 @@ export default function TabLayout () {
         }),
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({color}) => <IconSymbol size={28} name="house" color={color} />,
@@ -59,6 +59,13 @@ export default function TabLayout () {
         options={{
           title: 'Hangout',
           tabBarIcon: ({color}) => <IconSymbol size={28} name="arrow.up.backward.square" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="pomodoro"
+        options={{
+          title: 'Pomodoro',
+          tabBarIcon: ({color}) => <IconSymbol size={28} name="clock.badge" color={color} />,
         }}
       />
       <Tabs.Screen

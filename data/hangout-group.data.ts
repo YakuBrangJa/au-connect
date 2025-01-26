@@ -10,6 +10,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Join us for a fun and competitive game of football every Friday night.',
     category: ['sport', 'event'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 15,
+    participantLimit: 30,
   },
   {
     id: '2',
@@ -19,6 +21,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Come join us for an epic gaming marathon with friends. Snacks included!',
     category: ['gaming'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 8,
+    participantLimit: 20,
   },
   {
     id: '3',
@@ -28,6 +32,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'A casual jam session for anyone who loves music. Bring your instruments!',
     category: ['music', 'event'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 10,
+    participantLimit: 15,
   },
   {
     id: '4',
@@ -37,6 +43,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Let’s relive the classics at Arcade Night! Challenge your friends to a high score.',
     category: ['arcade'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 5,
+    participantLimit: 10,
   },
   {
     id: '5',
@@ -46,6 +54,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Join us to plan an exciting weekend getaway with fellow adventurers!',
     category: ['travel', 'event'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 12,
+    participantLimit: 25,
   },
   {
     id: '6',
@@ -55,6 +65,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Let’s share our love for good food! Explore new restaurants with fellow foodies.',
     category: ['food'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 7,
+    participantLimit: 15,
   },
   {
     id: '7',
@@ -64,6 +76,8 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Help plan an event for a good cause. Let’s work together to make a difference!',
     category: ['event'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 9,
+    participantLimit: 20,
   },
   {
     id: '8',
@@ -73,5 +87,7 @@ export const hangout_group_data: HangoutGroup[] = [
     description: 'Join us for a Sci-Fi movie marathon. Free popcorn for everyone!',
     category: ['movie', 'event'],
     coverURL: cover_images[`cover_${Math.floor(Math.random() * 4) + 1}`],
+    participantCount: 18,
+    participantLimit: 50,
   },
 ];
