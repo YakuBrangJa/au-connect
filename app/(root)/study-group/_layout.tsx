@@ -7,9 +7,14 @@ export default function StudyGroupLayout () {
     headerBackButtonDisplayMode: 'minimal',
   }}>
     <Stack.Screen name="index" options={{headerShown: false}} />
+    <Stack.Screen name="create" options={{
+      headerShown: true, title: 'Create Study Group', headerTitleStyle: {
+        fontSize: 18,
+        fontWeight: 700
+      }
+    }} />
     <Stack.Screen name="[group]" options={{
-      presentation: 'modal',
-      sheetCornerRadius: 100
+      presentation: 'modal'
     }}
     />
   </Stack>;

@@ -10,4 +10,8 @@ export type StudyGroup = {
   participantCount?: number,
   category: StudyGroupCategory[]
   coverURL: any
+  organiser: {
+    id: string,
+    name: string,
+  }
 } 

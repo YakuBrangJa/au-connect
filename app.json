@@ -10,14 +10,16 @@
     "newArchEnabled": true,
     "ios": {
       "userInterfaceStyle": "light",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.AUConnect"
     },
     "android": {
       "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.AUConnect"
     },
     "web": {
       "bundler": "metro",

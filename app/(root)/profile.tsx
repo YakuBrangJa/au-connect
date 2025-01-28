@@ -1,4 +1,4 @@
-import {StyleSheet, Image, Platform} from 'react-native';
+import {StyleSheet, Image, Platform, ScrollView} from 'react-native';
 
 import {Collapsible} from '@/components/Collapsible';
 import {ExternalLink} from '@/components/ExternalLink';
@@ -9,7 +9,7 @@ import {IconSymbol} from '@/components/ui/IconSymbol';
 
 export default function TabTwoScreen () {
   return (
-    <ParallaxScrollView
+    <ScrollView
     >
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Explore</ThemedText>
@@ -83,7 +83,7 @@ export default function TabTwoScreen () {
           ),
         })}
       </Collapsible>
-    </ParallaxScrollView >
+    </ScrollView >
   );
 }
 

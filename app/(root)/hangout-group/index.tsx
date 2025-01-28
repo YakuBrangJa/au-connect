@@ -1,70 +1,51 @@
 import GroupCard from '@/components/GroupCard'
-import ParallaxScrollView from '@/components/ParallaxScrollView'
 import {ThemedText} from '@/components/ThemedText'
 import {ThemedView} from '@/components/ThemedView'
-import Button from '@/components/ui/Button'
-import {hangout_group_data} from '@/data/hangout-group.data'
-import {study_group_data} from '@/data/study-group.data'
-import {Stack} from 'expo-router'
+import {useHangoutGroup} from '@/context/HangoutGroupContext'
+import {encodeParams} from '@/utils/encodeParam'
+import {router} from 'expo-router'
 import React from 'react'
-import {FlatList, Image, ImageBackground, Pressable, SafeAreaView, Text, TextInput, View} from 'react-native'
+import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native'
+import {UserGroupIcon} from 'react-native-heroicons/micro'
+import {MagnifyingGlassIcon, PlusCircleIcon} from 'react-native-heroicons/mini'
 
 function StudyGroupScreen () {
+  const {data} = useHangoutGroup()
   return (
-    <ThemedView>
-      {/* <Stack.Screen options={{title: "Study Groups", headerShown: false}} /> */}
-      <SafeAreaView>
-        <View className='p-4 flex-row justify-between items-center'>
-          <ThemedText type='title'>Hangout groups</ThemedText>
-          {/* <Button size="sm" className='h-[37px]'>+ Create Group</Button> */}
+    <ThemedView className='flex-1'>
+      <SafeAreaView className='relative flex-1'>
+        <View className='p-4 py-3 flex-row justify-between items-center' >
+          <ThemedText type='title'>Hangout Groups</ThemedText>
+          <View className='flex-row gap-[17px]'>
+            <TouchableOpacity activeOpacity={0.3}
+            // onPress={() => router.push('/(root)/hangout-group/create')}
+            >
+              <UserGroupIcon color={'#060606'} size={28} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.3}
+              onPress={() => router.push('/(root)/study-group/create')}
+            >
+              <PlusCircleIcon color={'#060606'} size={27} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.3}>
+              <MagnifyingGlassIcon color={'#060606'} size={27} />
+            </TouchableOpacity>
+          </View>
         </View>
-        {/* <View className='p-4'>
-          <TextInput className='border border-gray-200 rounded-xl px-4 h-[46px]' />
-        </View> */}
-        <View className=''>
-          <FlatList
-            data={hangout_group_data}
-            keyExtractor={item => item.id}
-            className='mb-[250px]'
-            contentContainerClassName='gap-5 p-5'
-            renderItem={({item}) => (
-              <View
-                key={item.id}
-                style={{
-                  backgroundColor: '#0000',
-                  shadowColor: '#afafaf',
-                  elevation: 2,
-                  shadowOffset: {width: 0, height: 2},
-                  shadowRadius: 1,
-                  shadowOpacity: 0.2,
-                }}
-              >
-                <Pressable className='rounded-2xl overflow-hidden bg-white' onPress={() => alert('Hello')}>
-                  <View className='h-[100px] bg-primary/10 relative'>
-                    <ImageBackground source={item.coverURL} className='w-full h-full object-cover'>
 
-                    </ImageBackground>
-                    <View className='py-[3px] px-3 rounded-2xl bg-primary/90 absolute right-3 top-3'>
-                      <Text className='text-white text-sm font-semibold'>3/40</Text>
-                    </View>
-                  </View>
-                  <View className=' bg-gray-200/30 p-3'>
-                    <ThemedText type='defaultSemiBold' className='!text-[14px]'>{item.title}</ThemedText>
-                    <ThemedText className='!text-sm mb-3 !text-gray-700'>TrueLab</ThemedText>
-                    <View className='flex-row gap-2'>
-                      {item.category.map(category => (
-                        <View key={category} className='py-[4px] px-3 rounded-2xl bg-primary/10 '>
-                          <Text className='text-primary font-medium'>{category}</Text>
-                        </View>
-                      ))}
-                    </View>
-                    {/* <Button size="sm" variant="outline">View Group</Button> */}
-                  </View>
-                </Pressable>
-              </View>
-            )
-            } />
-        </View>
+        <ScrollView className='mb-[48px]'>
+          <View className='flex-1 p-[20px] gap-4 pb-[14px]'>
+            {
+              data.map(item => (<GroupCard key={item.id} group={item} onViewGroup={() => router.push({
+                pathname: `/(root)/hangout-group/${item.id}`,
+                params: {
+                  id: item.id,
+                  data: encodeParams(item)
+                }
+              })} />))
+            }
+          </View>
+        </ScrollView >
       </SafeAreaView>
     </ThemedView>
   )

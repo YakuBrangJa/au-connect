@@ -10,4 +10,8 @@ export type HangoutGroup = {
   participantCount?: number,
   category: HangoutGroupCategory[]
   coverURL: any
+  organiser: {
+    id: string,
+    name: string,
+  }
 } 

@@ -1,14 +1,16 @@
-import Group from '@/components/Group'
+import StudyGroupModal from '@/components/StudyGroupModal'
+import {useUserGroup} from '@/context/UserGroupContext'
 import {StudyGroup} from '@/types/study-group.type'
+import {decodeCustomParams} from '@/utils/encodeParam'
 import {Route, useLocalSearchParams} from 'expo-router'
-import React from 'react'
-import {Text, View} from 'react-native'
+import React, {useCallback, useMemo} from 'react'
+import {Alert, Text, View} from 'react-native'
 
 function GroupModal () {
-  const item = useLocalSearchParams<StudyGroup>()
+  const params = useLocalSearchParams()
 
   return (
-    <Group group={item} />
+    <StudyGroupModal group={decodeCustomParams(params.data)} />
   )
 }
 
