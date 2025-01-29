@@ -49,7 +49,7 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
             </View>
           </View>
           <View className=' bg-white p-3 pt-2'>
-            <ThemedText type='defaultSemiBold' className='!text-[14px] '>{group.title}</ThemedText>
+            <ThemedText type='defaultSemiBold' numberOfLines={1} className='!text-[14px] '>{group.title}</ThemedText>
             <ThemedText className='!text-sm !text-gray-700'>{group.location}</ThemedText>
             <ThemedText className='!text-sm !text-gray-700 mb-2'>{format(group.time, 'EEE, dd MMM yyyy, hh:mm a')}</ThemedText>
             {isJoined ?

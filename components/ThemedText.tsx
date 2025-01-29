@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 21,
     fontWeight: 'bold',
   },
   subtitle2: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: 'bold',
   },
   link: {

@@ -1,6 +1,7 @@
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import {ThemedText} from '@/components/ThemedText'
 import {ThemedView} from '@/components/ThemedView'
+import Badge from '@/components/ui/Badge'
 import Button, {ButtonShadowProvider, buttonTextVariants} from '@/components/ui/Button'
 import {Colors} from '@/constants/Colors'
 import {CardShadow} from '@/constants/Shadows'
@@ -73,11 +74,7 @@ function HangoutGroupModal ({group}: Props) {
             </View>
           </View>
           <View className='flex-row gap-2 mt-5'>
-            {group.category?.map(category => (
-              <View key={category} className='py-[4px] px-3 rounded-2xl bg-primary/10 '>
-                <Text className='text-primary font-medium capitalize'>{category}</Text>
-              </View>
-            ))}
+            {group.category?.map(category => <Badge key={category}>{category}</Badge>)}
           </View>
           <View className='mt-6'>
             <ThemedText>{group.description}</ThemedText>

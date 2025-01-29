@@ -8,6 +8,10 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 import {Colors} from '@/constants/Colors';
 import {useColorScheme} from '@/hooks/useColorScheme';
 import {opacity} from 'react-native-reanimated/lib/typescript/Colors';
+import {BookOpenIcon, HomeIcon} from 'react-native-heroicons/outline';
+import {BookOpenIcon as BookOpenIconMini, HomeIcon as HomeIconMini} from 'react-native-heroicons/mini';
+import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 export default function TabLayout () {
@@ -17,18 +21,7 @@ export default function TabLayout () {
     <Tabs
       screenOptions={{
         animation: 'shift',
-        // transitionSpec: {
-        //   animation: 'timing',
-        //   config: {
-        //     duration: 100,
-        //     delay: 0,
-        //     // easing: (num) => 0.1,
-        //     // bounciness: 10
-        //   },
-        // },
         title: 'Root',
-        // tabBarInactiveBackgroundColor: '#F3F7FA',
-        // tabBarActiveBackgroundColor: '#F3F7FA',
         tabBarShowLabel: true,
         tabBarInactiveTintColor: '#383838',
         tabBarActiveTintColor: Colors.primary,
@@ -40,9 +33,6 @@ export default function TabLayout () {
             paddingTop: 3,
             backgroundColor: '#F3F7FA77',
             height: 85,
-            // backgrounTransparent: '',
-            // backdropFilter: 'blur(10px)',
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
           default: {
@@ -55,7 +45,7 @@ export default function TabLayout () {
         options={{
           title: 'Home',
           // href: "/home",
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="house" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name="home" size={25} color={color} /> : <Ionicons name="home-outline" size={25} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -63,7 +53,7 @@ export default function TabLayout () {
         options={{
           title: 'Study',
           // href: '/(root)/study-group',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="23.square" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <BookOpenIconMini size={27} color={color} /> : <BookOpenIcon size={27} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -71,16 +61,16 @@ export default function TabLayout () {
         options={{
           title: 'Hangout',
           // href: '/(root)/hangout-group',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="arrow.up.backward.square" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name="people" size={28} color={color} /> : <Ionicons name="people-outline" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
         name="pomodoro"
         options={{
           title: 'Pomodoro',
-          href: null,
+          // href: null,
           // href: '/pomodoro',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="clock.badge" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name="timer" size={26} color={color} /> : <Ionicons name="timer-outline" size={26} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -89,7 +79,7 @@ export default function TabLayout () {
 
           title: 'Messages',
           // href: '/messages',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="message" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name="chatbox" size={26} color={color} /> : <Ionicons name="chatbox-outline" size={26} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -97,7 +87,7 @@ export default function TabLayout () {
         options={{
           title: 'Profile',
           // href: '/profile',
-          tabBarIcon: ({color}) => <IconSymbol size={28} name="person" color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name="person" size={25} color={color} /> : <Ionicons name="person-outline" size={25} color={color} />,
         }}
       />
     </Tabs>

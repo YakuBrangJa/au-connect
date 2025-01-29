@@ -81,7 +81,7 @@ function Index () {
                     id: group.id,
                     data: encodeParams({
                       group,
-                      grouptype: 'study'
+                      groupType: 'study'
                     })
                   }
                 })}
@@ -110,7 +110,7 @@ function Index () {
                     id: group.id,
                     data: encodeParams({
                       group,
-                      grouptype: 'hangout'
+                      groupType: 'hangout'
                     })
                   }
                 })}

@@ -76,6 +76,7 @@ function CreateScreen () {
     })
   }, [setFormState])
 
+
   const {data} = useUser()
   const {addGroup} = useStudyGroup()
   const {createStudyGroup} = useUserGroup()
@@ -90,18 +91,20 @@ function CreateScreen () {
 
     addGroup(payload)
     createStudyGroup(payload)
-  }, [])
+  }, [formState])
 
   return (
-    <ThemedView className='flex-1' lightColor='#ffffff'>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        className='flex-1'>
-        <ScrollView
-          contentContainerClassName="pb-[80px]"
-          ref={scrollViewRef}
-          keyboardShouldPersistTaps="handled"
-        >
+    <ScrollView
+      contentContainerClassName="pb-[80px]"
+      ref={scrollViewRef}
+      keyboardShouldPersistTaps="handled"
+      contentInsetAdjustmentBehavior="automatic"
+    >
+      <ThemedView className='flex-1' lightColor='#ffffff'>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          className='flex-1'>
+          <SafeAreaView className=''>
           <ImageBackground source={require('@/assets/images/cover/cover_4.jpg')} className='w-full h-[190px] object-cover relative'>
             <View className='absolute top-[20px] right-[10px]'>
               <Button size='sm' className='!bg-black/40 gap-2'>
@@ -137,7 +140,7 @@ function CreateScreen () {
                 value={formState.description}
                 onChangeText={value => handleFormChange('description', value)}
                 className='h-[120px]'
-                placeholder='Provide details about your study group, such as purpose or topics covered'
+                  placeholder='Provide details about your study group'
               />
             </View>
             <View className='gap-4'>
@@ -183,9 +186,10 @@ function CreateScreen () {
               </ButtonShadowProvider>
             </View>
           </View>
-        </ScrollView>
+          </SafeAreaView>
       </KeyboardAvoidingView>
     </ThemedView>
+    </ScrollView>
   )
 }
 
