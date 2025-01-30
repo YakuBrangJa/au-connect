@@ -5,8 +5,10 @@ import { ThemedView } from '@/components/ThemedView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { profileSettings } from '@/data/profile-settings.data';
 import { PencilIcon, UserCircleIcon } from 'react-native-heroicons/micro';
-
+import { useNavigation } from "@react-navigation/native";
+import { router } from 'expo-router';
 const SettingsScreen = () => {
+ 
   return (
     <><ThemedView className='flex-1'>
       <SafeAreaView className='flex-1'>
@@ -33,10 +35,18 @@ const SettingsScreen = () => {
 
       {/* Settings Options */}
       {profileSettings.map((item, index) => (
-        <TouchableOpacity key={index} className="p-5 border-b border-gray-200 flex-row justify-between items-center">
-          <Text className="text-base">{item}</Text>
-          <Ionicons name="chevron-forward" size={20} color="gray" />
-        </TouchableOpacity>
+         <TouchableOpacity
+         key={index}
+         className="p-5 border-b border-gray-200 flex-row justify-between items-center"
+         onPress={() => {
+           if (item === "Notifications") {
+             router.navigate("/notification")
+           }
+         }}
+       >
+         <Text className="text-base">{item}</Text>
+         <Ionicons name="chevron-forward" size={20} color="gray" />
+       </TouchableOpacity>
       ))}
 
 
