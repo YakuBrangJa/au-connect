@@ -6,6 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 import TextButton from "@/components/ui/TextButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileIcon from "@/components/ui/ProfileIcon";
+import { PencilSquareIcon } from "react-native-heroicons/micro";
 
 interface ChatItem {
   id: string;
@@ -53,13 +54,13 @@ const ChatScreen = () => {
           < Text className=" text-primary">Edit</ Text>
           <ThemedText type="subtitle2">Chats</ThemedText>
           <Pressable onPress={() => console.log("Open settings")}>
-            <Text>⚙️</Text>
+            <Text><PencilSquareIcon size={20} color="red"/></Text>
           </Pressable>
         </View>
 
         {/* <ScrollView className="flex-1"> */}
           {/* Search Bar */}
-          <View className="bg-gray-200 px-3 py-1 rounded-lg mx-4">
+          <View className="bg-gray-200 px-3 py-1 rounded-2xl mx-4">
             <TextInput placeholder="Search" className="text-base" />
           </View>
 

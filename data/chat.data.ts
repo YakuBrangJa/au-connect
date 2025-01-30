@@ -2,7 +2,7 @@ export const chat_data = [
     {
         id: '1',
         name: 'Haley James',
-        lastMessage: 'Stand up for what you believe in',
+        lastMessage: "You can't say I give up without saying I gay. So, please don't give up",
         unreadCount: 9,
        // avatar: require('../../assets/images/haley_james.png'),
     },
