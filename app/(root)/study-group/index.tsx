@@ -4,8 +4,8 @@ import {ThemedView} from '@/components/ThemedView'
 import {useStudyGroup} from '@/context/StudyGroupContext'
 import {encodeParams} from '@/utils/encodeParam'
 import {router, Stack} from 'expo-router'
-import React, {useState} from 'react'
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native'
+import React, {useMemo, useState} from 'react'
+import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Tab from '@/components/ui/Tabs'
@@ -13,15 +13,15 @@ import {TabList, TabTrigger} from '@/components/GroupPageTab'
 import {cn} from '@/libs/cn'
 import {useUserGroup} from '@/context/UserGroupContext'
 import JoinedGroupCard from '@/components/JoinedGroupCard'
-import TextButton from '@/components/ui/TextButton'
 import {darkenColor} from '@/utils/darkenColor'
 import {Colors} from '@/constants/Colors'
+import {sortGroup} from '@/utils/sortGroup'
 
 function StudyGroupScreen () {
+  const [activeTab, setActiveTab] = useState('discover')
   const {data} = useStudyGroup()
   const {joinedStudyGroups} = useUserGroup()
-
-  const [activeTab, setActiveTab] = useState('discover')
+  const sortedData = useMemo(() => sortGroup(data), [data])
 
   return (
     <ThemedView className='flex-1'>
@@ -70,9 +70,19 @@ function StudyGroupScreen () {
           </TabList>
           {/* <View className='flex-1 p-5 gap-4 pb-[14px]'> */}
           <Tab.TabContent value='discover' className='flex-1'>
-            <ScrollView className='mb-[48px]' contentContainerClassName='flex-row flex-wrap p-4 gap-[12px] pb-[14px]' >
+            <ScrollView
+              style={Platform.select({
+                ios: {
+                  marginBottom: 50
+                },
+                android: {
+                  paddingBottom: 10
+                }
+              })}
+              contentContainerClassName='flex-row flex-wrap p-4 gap-[12px] pb-[14px]'
+            >
               {
-                data.map(group => (<GroupCard key={group.id} group={group}
+                sortedData.map(group => (<GroupCard key={group.id} group={group}
                   onViewGroup={() => router.push({
                     // @ts-ignore
                     pathname: `/(root)/study-group/${group.id}`,
@@ -88,8 +98,15 @@ function StudyGroupScreen () {
             className='flex-1 py-4 gap-4 pb-[14px]'
           >
             {joinedStudyGroups.length > 0 ?
-              (<ScrollView className='mb-[48px]'
-              // contentContainerClassName='gap-4'
+              (<ScrollView
+                style={Platform.select({
+                  ios: {
+                    marginBottom: 50
+                  },
+                  android: {
+                    paddingBottom: 10
+                  }
+                })}
               >
                 {joinedStudyGroups.map(group => <JoinedGroupCard key={group.id} group={group}
                   onPress={() => router.push({
@@ -116,21 +133,3 @@ function StudyGroupScreen () {
 }
 
 export default StudyGroupScreen
-
-
-
-{/* Floating button */}
-{/* <View style={{
-        ...CardShadow,
-        shadowOffset: {width: 0, height: 3},
-        shadowColor: '#442128',
-        shadowOpacity: 0.7,
-        shadowRadius: 4,
-      }}>
-        <Button className='absolute z-10 right-[20px] bottom-[70px] gap-1.5 rounded-[40px] h-[44px]'
-          onPress={() => router.push('/(root)/study-group/create')}
-        >
-          <PlusIcon color={'#ffffff'} size={19} />
-          <Text className={buttonTextVariants()}>Create</Text>
-        </Button>
-      </View> */}

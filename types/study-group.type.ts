@@ -8,7 +8,7 @@ export type StudyGroup = {
   location: string,
   description: string,
   participantLimit?: number,
-  participantCount?: number,
+  participantCount: number,
   category: StudyGroupCategory[]
   coverURL: any
   organiser: {

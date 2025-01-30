@@ -10,13 +10,17 @@ import {useUser} from '@/context/UserContext'
 import {useUserGroup} from '@/context/UserGroupContext'
 import useScrollIntoView from '@/hooks/useScrollIntoView'
 import {cn} from '@/libs/cn'
-import {StudyGroupCategory} from '@/types/study-group.type'
+import {StudyGroup, StudyGroupCategory} from '@/types/study-group.type'
 import generateCryptoUID from '@/utils/generateUID'
-import DateTimePicker from '@react-native-community/datetimepicker'
 import {randomUUID} from 'expo-crypto'
 import React, {useCallback, useRef, useState} from 'react'
-import {Image, ImageBackground, KeyboardAvoidingView, NativeSyntheticEvent, Platform, Pressable, SafeAreaView, ScrollView, Switch, Text, TextInput, TextInputFocusEventData, TextInputProps, TouchableHighlight, TouchableOpacity, View} from 'react-native'
+import {Image, ImageBackground, KeyboardAvoidingView, LogBox, NativeSyntheticEvent, Platform, Pressable, SafeAreaView, ScrollView, Switch, Text, TextInput, TextInputFocusEventData, TextInputProps, TouchableHighlight, TouchableOpacity, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import DateTimePicker from 'react-native-ui-datepicker'
+import CommunityDateTimePicker from '@react-native-community/datetimepicker'
+import {format} from 'date-fns'
+import {router} from 'expo-router'
+LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
 
 type FormState = {
@@ -30,6 +34,7 @@ type FormState = {
 
 function CreateScreen () {
   const [isLimiting, setIsLimiting] = useState(false)
+  const [showDatePicker, setShowDatePicker] = useState(false)
   const [formState, setFormState] = useState<FormState>({
     title: '',
     location: '',
@@ -82,33 +87,40 @@ function CreateScreen () {
   const {createStudyGroup} = useUserGroup()
 
   const handleSubmit = useCallback(() => {
-    const payload = {
+    const payload: StudyGroup = {
       ...formState,
       createdAt: new Date(),
       id: randomUUID(),
+      participantCount: 1,
       organiser: data,
       coverURL: require('@/assets/images/cover/cover_1.jpg'),
     }
 
     addGroup(payload)
     createStudyGroup(payload)
+    router.back()
   }, [formState])
 
   return (
     <KeyboardAvoidingView
       contentContainerClassName='bg-white'
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ThemedView lightColor='#ffffff'>
       <ScrollView
-        contentContainerStyle={{
-          paddingBottom: 42,
-          backgroundColor: '#ffffff',
-        }}
+          contentContainerStyle={
+            Platform.select({
+              android: {
+                paddingTop: 110
+              },
+              ios: {
+                paddingBottom: 42
+              }
+            })
+          }
         ref={scrollViewRef}
         keyboardShouldPersistTaps="handled"
         contentInsetAdjustmentBehavior="automatic"
-      >
-        <ThemedView className='flex-1' lightColor='#ffffff'>
-          <SafeAreaView>
+        >
           <ImageBackground source={require('@/assets/images/cover/cover_4.jpg')} className='w-full h-[190px] object-cover relative'>
             <View className='absolute top-[20px] right-[10px]'>
               <Button size='sm' className='!bg-black/40 gap-2'>
@@ -162,16 +174,34 @@ function CreateScreen () {
             </View>
             <View className='gap-2 mt-2'>
               <ThemedText type='defaultSemiBold' className='!text-[15px]' >Select date & time</ThemedText>
-              <DateTimePicker
-                value={formState.time}
-                mode='datetime'
-                onChange={event => handleFormChange('time', new Date(event.nativeEvent.timestamp))}
-                style={{
-                  marginLeft: -9,
-                }}
-              />
+              {Platform.OS === 'android' && <View className='items-start'>
+                <View className='px-4 h-[40px] bg-gray-200 rounded-lg items-center justify-center'>
+                  <Text className='font-semibold '>{format(formState.time, 'MMM dd, yyyy  hh:mm a')}</Text>
+                </View>
+              </View>}
+              <View className='mt-2'>
+                {Platform.OS === 'ios' ?
+
+                  <CommunityDateTimePicker
+                    mode='datetime'
+                    value={formState.time}
+                    onChange={({nativeEvent}) => handleFormChange('time', new Date(nativeEvent.timestamp))}
+
+                  />
+                  :
+                  <DateTimePicker
+                    mode='single'
+                    timePicker
+                    date={formState.time}
+                    onChange={(param) => handleFormChange('time', new Date(param.date as string))}
+                    dayContainerStyle={{
+                      width: 40,
+                    }}
+                  />
+                }
+              </View>
             </View>
-            <View className='gap-2 mt-2'>
+            <View className='gap-2'>
               <ThemedText type='defaultSemiBold' className='!text-[15px]' >Limit participant</ThemedText>
               <View className='flex-row items-center gap-5'>
                 <Switch value={isLimiting} onChange={e => setIsLimiting(prev => !prev)} />
@@ -190,9 +220,8 @@ function CreateScreen () {
               </ButtonShadowProvider>
             </View>
           </View>
-          </SafeAreaView>
-    </ThemedView>
-    </ScrollView>
+        </ScrollView>
+      </ThemedView>
     </KeyboardAvoidingView>
   )
 }

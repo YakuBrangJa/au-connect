@@ -122,7 +122,7 @@ export const study_group_data: StudyGroup[] = [
   },
   {
     id: '10',
-    createdAt: new Date('2025-06-26T15:10:00'),
+    createdAt: new Date('2024-06-26T15:10:00'),
     title: 'History of Music Evolution',
     time: new Date('2025-02-10T15:30:00'),
     location: 'Room 108, Music Department',

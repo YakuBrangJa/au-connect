@@ -60,10 +60,11 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
                 <Text className={buttonTextVariants({variant: "secondary", size: 'sm'})}>Joined</Text>
               </Button>
               :
-              <Button size="sm" variant={"outline"} onPress={onPressJoin} className='gap-1'>
+              <Button size="sm" variant={"outline"} onPress={onPressJoin} className='gap-1 !bg-white/0'>
                 <Ionicons name="add" size={16} color={Colors.primary} />
                 <Text className={buttonTextVariants({variant: "outline", size: 'sm'})}>Join Group</Text>
-              </Button>}
+              </Button>
+            }
           </View>
         </View>
       </Pressable>

@@ -31,9 +31,9 @@ export default function TabLayout () {
             position: 'absolute',
           },
           default: {
-            paddingTop: 3,
-            backgroundColor: '#F3F7FA77',
-            height: 85,
+            paddingTop: 4,
+            height: 75,
+            // backgroundColor: '#F3F7FA77',
             // position: 'absolute',
           },
         }),

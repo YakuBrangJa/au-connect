@@ -9,8 +9,9 @@ import {useUserGroup} from '@/context/UserGroupContext'
 import {HangoutGroup} from '@/types/hangout-group.type'
 import {format} from 'date-fns'
 import React, {useCallback, useMemo} from 'react'
-import {Alert, GestureResponderEvent, Image, ScrollView, Text, View} from 'react-native'
+import {Alert, GestureResponderEvent, Image, Platform, Pressable, ScrollView, Text, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {router} from 'expo-router'
 
 interface Props {
   group: HangoutGroup
@@ -41,6 +42,11 @@ function HangoutGroupModal ({group}: Props) {
 
   return (
     <ThemedView className='flex-1'>
+      {Platform.OS === 'android' &&
+        <Pressable onPress={() => router.back()} className='active:opacity-50 absolute top-[50px] left-[10px] z-10'>
+          <Ionicons name="chevron-back" size={29} color={"#3B82F6"} />
+        </Pressable>
+      }
       <ParallaxScrollView
         headerImage={
           <Image
@@ -80,7 +86,14 @@ function HangoutGroupModal ({group}: Props) {
           </View>
         </ThemedView>
       </ParallaxScrollView>
-      <View className='absolute bottom-12 w-full px-6'>
+      <View className='absolute w-full px-6' style={Platform.select({
+        android: {
+          bottom: 20
+        },
+        ios: {
+          bottom: 48
+        }
+      })}>
         {isJoined ?
           <Button className='gap-2' onPress={handlePressLeave} variant="secondary">
             <Ionicons name="log-out-outline" size={20} color="#101010" className=' rotate-180' />

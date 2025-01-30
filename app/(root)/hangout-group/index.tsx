@@ -4,22 +4,24 @@ import {ThemedView} from '@/components/ThemedView'
 import {useHangoutGroup} from '@/context/HangoutGroupContext'
 import {encodeParams} from '@/utils/encodeParam'
 import {router} from 'expo-router'
-import React, {useState} from 'react'
-import {Pressable, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native'
+import React, {useMemo, useState} from 'react'
+import {Platform, Pressable, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {cn} from '@/libs/cn'
 import Tab from '@/components/ui/Tabs'
 import {TabList, TabTrigger} from '@/components/GroupPageTab'
 import JoinedGroupCard from '@/components/JoinedGroupCard'
 import {useUserGroup} from '@/context/UserGroupContext'
-import TextButton from '@/components/ui/TextButton'
 import {darkenColor} from '@/utils/darkenColor'
 import {Colors} from '@/constants/Colors'
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {sortGroup} from '@/utils/sortGroup'
 
 function HangoutGroupScreen () {
   const {data} = useHangoutGroup()
   const {joinedHangoutGroups} = useUserGroup()
   const [activeTab, setActiveTab] = useState('discover')
+  const sortedData = useMemo(() => sortGroup(data), [data])
 
   return (
     <ThemedView className='flex-1'>
@@ -69,9 +71,18 @@ function HangoutGroupScreen () {
             </TabTrigger>
           </TabList>
           <Tab.TabContent value='discover' className='flex-1'>
-            <ScrollView className='mb-[48px]' contentContainerClassName='flex-row flex-wrap p-4 gap-[12px] pb-[14px]' >
+            <ScrollView contentContainerClassName='flex-row flex-wrap p-4 gap-[12px] pb-[14px]'
+              style={Platform.select({
+                ios: {
+                  marginBottom: 50
+                },
+                android: {
+                  paddingBottom: 10
+                }
+              })}
+            >
               {
-                data.map(group => (<GroupCard key={group.id} group={group} onViewGroup={() => router.push({
+                sortedData.map(group => (<GroupCard key={group.id} group={group} onViewGroup={() => router.push({
                   // @ts-ignore
                   pathname: `/(root)/hangout-group/${group.id}`,
                   params: {
@@ -86,7 +97,15 @@ function HangoutGroupScreen () {
             className='flex-1 py-4 gap-4 pb-[14px]'
           >
             {joinedHangoutGroups.length > 0 ?
-              (<ScrollView className='mb-[48px]'
+              (<ScrollView
+                style={Platform.select({
+                  ios: {
+                    marginBottom: 50
+                  },
+                  android: {
+                    paddingBottom: 10
+                  }
+                })}
               >
                 {joinedHangoutGroups.map(group => <JoinedGroupCard
                   key={group.id} group={group}

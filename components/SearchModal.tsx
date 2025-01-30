@@ -5,11 +5,14 @@ import React, {ReactNode, useEffect, useRef} from 'react'
 import {Animated, KeyboardAvoidingView, Platform, Pressable, SafeAreaView, ScrollView, Text, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {router} from 'expo-router'
+import {SafeAreaView as RNSafeAreaView} from 'react-native-safe-area-context'
+import {OsSafeAreaView} from '@/components/OsSafeAreaView'
 
 interface Props {
   searchFieldProps?: SearchInputProps
   children?: ReactNode
 }
+
 
 function SearchModal ({searchFieldProps, children}: Props) {
 
@@ -28,7 +31,7 @@ function SearchModal ({searchFieldProps, children}: Props) {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <SafeAreaView>
+      <OsSafeAreaView>
         <ThemedView className='h-full'>
           <View className='pl-1.5 pr-5 pb-2.5 pt-4 flex-row items-center gap-2 border-b border-gray-200'>
             <Pressable onPress={() => router.back()} className='active:opacity-50'>
@@ -44,7 +47,7 @@ function SearchModal ({searchFieldProps, children}: Props) {
             {children}
           </ScrollView>
         </ThemedView>
-      </SafeAreaView >
+      </OsSafeAreaView >
     </KeyboardAvoidingView>
   )
 }
