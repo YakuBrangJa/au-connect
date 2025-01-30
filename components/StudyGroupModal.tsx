@@ -9,9 +9,7 @@ import {format} from 'date-fns'
 import React, {useCallback, useMemo} from 'react'
 import {Alert, GestureResponderEvent, Image, Platform, Pressable, ScrollView, Text, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {OsSafeAreaView} from '@/components/OsSafeAreaView'
 import {router} from 'expo-router'
-import {Colors} from '@/constants/Colors'
 
 interface Props {
   group: StudyGroup
