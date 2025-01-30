@@ -13,7 +13,7 @@ function useScrollIntoView () {
       (x: number, y: number) => {
         scrollViewRef.current?.scrollTo({
           x: 0,
-          y: y - 10, // Adjust offset as needed
+          y: y - 300, // Adjust offset as needed
           animated: true,
         });
       },

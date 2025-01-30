@@ -57,7 +57,7 @@ const ChatScreen = () => {
           </Pressable>
         </View>
 
-        <ScrollView className="flex-1">
+        {/* <ScrollView className="flex-1"> */}
           {/* Search Bar */}
           <View className="bg-gray-200 px-3 py-1 rounded-lg mx-4">
             <TextInput placeholder="Search" className="text-base" />
@@ -70,7 +70,7 @@ const ChatScreen = () => {
             renderItem={({ item }) => <ChatListItem {...item} />}
             contentContainerClassName="px-4 py-3"
           />
-        </ScrollView>
+        {/* </ScrollView> */}
       </SafeAreaView>
     </ThemedView>
   );

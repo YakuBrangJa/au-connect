@@ -13,7 +13,8 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import {randomUUID} from 'expo-crypto'
 import React, {useCallback, useRef, useState} from 'react'
 import {Image, ImageBackground, KeyboardAvoidingView, NativeSyntheticEvent, Platform, Pressable, SafeAreaView, ScrollView, Switch, Text, TextInput, TextInputFocusEventData, TextInputProps, TouchableHighlight, TouchableOpacity, View} from 'react-native'
-import {CheckIcon, ChevronLeftIcon, PencilSquareIcon} from 'react-native-heroicons/micro'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import {Colors} from '@/constants/Colors'
 
 type FormState = {
   title: string,
@@ -79,6 +80,7 @@ function CreateScreen () {
   const handleSubmit = useCallback(() => {
     const payload = {
       ...formState,
+      createdAt: new Date(),
       id: randomUUID(),
       organiser: data,
       coverURL: require('@/assets/images/cover/cover_1.jpg'),
@@ -90,25 +92,24 @@ function CreateScreen () {
   }, [formState])
 
   return (
-    <ScrollView
-      contentContainerClassName="pb-[80px]"
-      ref={scrollViewRef}
-      keyboardShouldPersistTaps="handled"
-      contentInsetAdjustmentBehavior="automatic"
-    >
-      <ThemedView className='flex-1' lightColor='#ffffff'>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          className='flex-1'>
-          <ScrollView
-            contentContainerClassName="pb-[80px]"
-            ref={scrollViewRef}
-            keyboardShouldPersistTaps="handled"
-          >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      className=''>
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 42,
+          backgroundColor: '#ffffff',
+        }}
+        ref={scrollViewRef}
+        keyboardShouldPersistTaps="handled"
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        <SafeAreaView>
+          <ThemedView className='flex-1' lightColor='#ffffff'>
             <ImageBackground source={require('@/assets/images/cover/cover_4.jpg')} className='w-full h-[190px] object-cover relative'>
               <View className='absolute top-[20px] right-[10px]'>
                 <Button size='sm' className='!bg-black/40 gap-2'>
-                  <PencilSquareIcon color={'#ffffff'} size={16} />
+                  {/* <PencilSquareIcon color={'#ffffff'} size={16} /> */}
                   <Text className={buttonTextVariants({size: 'sm', className: ''})}>Edit Cover</Text>
                 </Button>
               </View>
@@ -186,10 +187,10 @@ function CreateScreen () {
                 </ButtonShadowProvider>
               </View>
             </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </ThemedView>
-    </ScrollView>
+          </ThemedView>
+        </SafeAreaView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -204,12 +205,12 @@ function Tags ({label, checked, onCheckedChange}:
   return (
     <View className='bg-black rounded-[50px]'>
       <Pressable
-        className={cn('rounded-[17px] bg-gray-200 py-[8px] px-3 overflow-hidden active:opacity-80 flex-row gap-1.5', checked && 'bg-blue-500 pl-2.5')}
+        className={cn('rounded-[17px] bg-gray-200 h-[32px] items-center px-3 overflow-hidden active:opacity-80 flex-row gap-1.5', checked && 'bg-blue-500 pl-2.5')}
         onPress={() => {
           if(typeof onCheckedChange === 'function') onCheckedChange(!checked)
         }}
       >
-        {checked && <CheckIcon color={"#ffffff"} />}
+        {checked && <Ionicons name="checkmark-sharp" size={17} color="#ffffff" />}
         <Text className={cn('font-medium capitalize', checked && 'text-white')}>{label}</Text>
       </Pressable>
     </View>

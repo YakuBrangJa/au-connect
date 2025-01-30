@@ -8,7 +8,8 @@ import {format} from 'date-fns'
 import {router} from 'expo-router'
 import React, {ComponentProps} from 'react'
 import {GestureResponderEvent, Image, ImageBackground, Pressable, Text, View} from 'react-native'
-import {ArrowLeftStartOnRectangleIcon, PlusIcon} from 'react-native-heroicons/mini'
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, isJoined}: {
   className?: string
@@ -44,7 +45,8 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
               {/* <ThemedText type='defaultSemiBold' className='z-10 !text-[14px] !text-white mb-1 ml-3'>{group.title}</ThemedText>
             <View className=' absolute w-full h-full bg-black opacity-15 top-0'></View> */}
             </ImageBackground>
-            <View className='py-[3px] px-3 rounded-2xl bg-primary/90 absolute right-3 top-3'>
+            <View className='py-[3px] px-3 pl-2.5 rounded-2xl bg-primary/90 absolute right-3 top-3 flex-row items-center gap-1.5'>
+              <Ionicons name="people" size={15} color={'#ffffff'} /> 
               <Text className='text-white text-sm font-semibold'>{group.participantCount || 0}{group.participantLimit ? `/${group.participantLimit}` : ''}</Text>
             </View>
           </View>
@@ -53,13 +55,13 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
             <ThemedText className='!text-sm !text-gray-700'>{group.location}</ThemedText>
             <ThemedText className='!text-sm !text-gray-700 mb-2'>{format(group.time, 'EEE, dd MMM yyyy, hh:mm a')}</ThemedText>
             {isJoined ?
-              <Button size="sm" variant={"secondary"} onPress={onPressLeave} className='gap-1'>
-                <ArrowLeftStartOnRectangleIcon size={16} color={'#080808'} />
+              <Button size="sm" variant={"secondary"} onPress={onPressLeave} className='gap-1.5'>
+                <Ionicons name="log-out-outline" size={16} color="#101010" className=' rotate-180' />
                 <Text className={buttonTextVariants({variant: "secondary", size: 'sm'})}>Joined</Text>
               </Button>
               :
               <Button size="sm" variant={"outline"} onPress={onPressJoin} className='gap-1'>
-                <PlusIcon color={Colors.primary} size={16} />
+                <Ionicons name="add" size={16} color={Colors.primary} />
                 <Text className={buttonTextVariants({variant: "outline", size: 'sm'})}>Join Group</Text>
               </Button>}
           </View>

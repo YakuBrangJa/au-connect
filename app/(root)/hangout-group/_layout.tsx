@@ -32,5 +32,6 @@ export default function HomeLayout () {
         fontWeight: 700
       }
     }} />
+    <Stack.Screen name="search" options={{headerShown: false, animation: 'fade', animationDuration: 200}} />
   </Stack>;
 }

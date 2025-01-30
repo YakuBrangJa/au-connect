@@ -3,19 +3,23 @@ import {darkenColor} from "@/utils/darkenColor";
 import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {Animated, StyleSheet, Text, View} from "react-native";
 
-const SwitchingBadge: React.FC<{categories: string[]}> = ({categories}) => {
+const AnimatingBadge: React.FC<{categories: string[]}> = ({categories}) => {
   const isMultiCategory = categories.length > 1
 
-  const initialTextLength = categories[0].length * 14
+  const initialTextLength = categories[0].length * 11
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [textWidth, setTextWidth] = useState(initialTextLength); // Store text width
+  const [textWidth, setTextWidth] = useState(0); // Store text width
   const translateYAnim = useRef(new Animated.Value(0)).current;
   const widthAnim = useRef(new Animated.Value(initialTextLength)).current; // For badge width animation
 
   const animationLengthVariation = () => {
     const cur = categories[currentIndex].length
     const prev = categories[currentIndex - 1] ? categories[currentIndex - 1].length : categories[categories.length - 1].length
-    return (Math.abs(prev - cur)) > 4 ? 20 : 80
+
+    if((prev - cur) > 4) return 30
+    if((prev - cur) < -4) return 13
+    else return 80
+    // return (Math.abs(prev - cur)) > 4 ? 20 : 80
   }
 
   useLayoutEffect(() => {
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   badgeText: {
-    fontSize: 14,
+    fontSize: 13,
     textTransform: 'capitalize',
     color: darkenColor(Colors.primary, 0.1),
     fontWeight: 600,
@@ -118,4 +122,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default SwitchingBadge
+export default AnimatingBadge

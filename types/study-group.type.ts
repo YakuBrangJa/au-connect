@@ -2,6 +2,7 @@ export type StudyGroupCategory = 'business' | 'science' | 'engineering' | 'archi
 
 export type StudyGroup = {
   id: string,
+  createdAt: Date,
   title: string,
   time: Date,
   location: string,

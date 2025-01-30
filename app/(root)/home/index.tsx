@@ -10,8 +10,8 @@ import {encodeParams} from '@/utils/encodeParam'
 import {router} from 'expo-router'
 import React, {useCallback, useMemo} from 'react'
 import {Alert, Image, Pressable, ScrollView, Text, TouchableOpacity, View} from 'react-native'
-import {BellIcon} from 'react-native-heroicons/mini'
 import {SafeAreaView} from 'react-native-safe-area-context'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 function Index () {
   const {joinStudyGroup, joinedStudyGroups, joinedHangoutGroups, joinHangoutGroup, leaveStudyGroup, leaveHangoutGroup} = useUserGroup()
@@ -57,7 +57,8 @@ function Index () {
         <View className='p-4 flex-row justify-between items-center'>
           <ThemedText type='title'>AU Connect</ThemedText>
           <TouchableOpacity onPress={() => router.navigate('/notification')} activeOpacity={0.5} className='mr-1'>
-            <BellIcon color={'#101010'} size={24} />
+            {/* <BellIcon color={'#101010'} size={24} /> */}
+            <Ionicons name="notifications-sharp" size={24} color="#202020" />
           </TouchableOpacity>
         </View>
         <ScrollView>

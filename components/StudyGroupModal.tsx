@@ -8,9 +8,8 @@ import {StudyGroup} from '@/types/study-group.type'
 import {format} from 'date-fns'
 import React, {useCallback, useMemo} from 'react'
 import {Alert, GestureResponderEvent, Image, ScrollView, Text, View} from 'react-native'
-import {CalendarIcon, ClockIcon, MapPinIcon, UserGroupIcon, } from 'react-native-heroicons/micro'
-import {UserPlusIcon, UserGroupIcon as UserGroupIconMicro} from 'react-native-heroicons/micro'
-import {ArrowLeftStartOnRectangleIcon, PlusIcon} from 'react-native-heroicons/mini'
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 interface Props {
   group: StudyGroup
 }
@@ -53,17 +52,17 @@ function StudyGroupModal ({group}: Props) {
             <ThemedText type='subtitle'>{group.title}</ThemedText>
             <View className='gap-1'>
               <View className='flex-row gap-1.5 items-center -ml-0.5'>
-                <MapPinIcon color={'#7C8BA1'} />
+                <Ionicons name="location-sharp" size={16} color="#7C8BA1" />
                 <ThemedText lightColor='#6B7280' className='!text-[14px]'>{group.location}</ThemedText>
               </View>
               <View className='flex-row gap-1.5 items-center -ml-0.5'>
-                <CalendarIcon color={'#7C8BA1'} />
+                <Ionicons name="calendar" size={16} color="#7C8BA1" />
                 <ThemedText lightColor='#6B7280' className='!text-[14px] mr-2'>{format(group.time, 'EEE, dd MMM yyyy')}</ThemedText>
-                <ClockIcon color={'#7C8BA1'} />
+                <Ionicons name="time-sharp" size={16} color="#7C8BA1" />
                 <ThemedText lightColor='#6B7280' className='!text-[14px]'>{format(group.time, 'hh:mm a')}</ThemedText>
               </View>
               <View className='flex-row gap-1.5 items-center -ml-0.5'>
-                <UserGroupIcon color={'#7C8BA1'} />
+                <Ionicons name="people" size={16} color="#7C8BA1" />
                 <View className='flex-row'>
                   <ThemedText lightColor='#030712' className='!text-[14px] font-medium'>{group.participantCount}/{group.participantLimit} </ThemedText>
                   <ThemedText lightColor='#6B7280' className='!text-[14px]'>participants</ThemedText>
@@ -82,13 +81,13 @@ function StudyGroupModal ({group}: Props) {
       <View className='absolute bottom-12 w-full px-6'>
         {isJoined ?
           <Button className='gap-2' onPress={handlePressLeave} variant="secondary">
-            <ArrowLeftStartOnRectangleIcon color={'#101010'} size={20} />
+            <Ionicons name="log-out-outline" size={20} color="#101010" className=' rotate-180' />
             <Text className={buttonTextVariants({variant: 'secondary'})}>Joined</Text>
           </Button>
           :
           <ButtonShadowProvider>
             <Button className='gap-2' onPress={handlePressJoin}>
-              <PlusIcon color={'#ffffff'} size={20} />
+              <Ionicons name="add" size={21} color="#ffffff" />
               <Text className={buttonTextVariants({})}>Join Group</Text>
             </Button>
           </ButtonShadowProvider>

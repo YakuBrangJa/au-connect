@@ -4,7 +4,7 @@ import Button, {ButtonShadowProvider, buttonTextVariants} from '@/components/ui/
 import {router} from 'expo-router'
 import React from 'react'
 import {Image, SafeAreaView, Text, TouchableOpacity, View} from 'react-native'
-import {ArrowRightIcon} from 'react-native-heroicons/mini'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 function WelcomeScreen () {
   return (
@@ -22,7 +22,7 @@ function WelcomeScreen () {
             <ButtonShadowProvider>
               <Button className='w-full gap-2' size={'lg'} onPress={() => router.replace('/(root)/home')}>
                 <Text className={buttonTextVariants({size: 'lg'})}>Get Started</Text>
-                <ArrowRightIcon color={'#ffffff'} size={19} />
+                <Ionicons name="arrow-forward" size={19} color="#ffffff" />
               </Button>
             </ButtonShadowProvider>
           </View>

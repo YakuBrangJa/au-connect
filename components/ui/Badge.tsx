@@ -6,10 +6,11 @@ import {Text, View} from 'react-native'
 function Badge ({children}: PropsWithChildren<{}>) {
 
   return (
-    <View className='py-[5px] px-3 rounded-2xl bg-primary/10 '>
-      <Text className='text-primary font-medium capitalize'
+    <View className='py-[5px] px-3 rounded-2xl bg-primary/15 '>
+      <Text className='font-medium capitalize'
         style={{
-          color: darkenColor(Colors.primary, 0.1)
+          fontWeight: '600',
+          color: darkenColor(Colors.primary, 0.15)
         }}
       >{children}</Text>
     </View>

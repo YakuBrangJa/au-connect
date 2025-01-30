@@ -3,14 +3,9 @@ import React from 'react';
 import {Platform} from 'react-native';
 
 import {HapticTab} from '@/components/HapticTab';
-import {IconSymbol} from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import {Colors} from '@/constants/Colors';
 import {useColorScheme} from '@/hooks/useColorScheme';
-import {opacity} from 'react-native-reanimated/lib/typescript/Colors';
-import {BookOpenIcon, HomeIcon} from 'react-native-heroicons/outline';
-import {BookOpenIcon as BookOpenIconMini, HomeIcon as HomeIconMini} from 'react-native-heroicons/mini';
-import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
@@ -23,7 +18,7 @@ export default function TabLayout () {
         animation: 'shift',
         title: 'Root',
         tabBarShowLabel: true,
-        tabBarInactiveTintColor: '#383838',
+        tabBarInactiveTintColor: '#262626',
         tabBarActiveTintColor: Colors.primary,
         headerShown: false,
         tabBarButton: HapticTab,
@@ -36,7 +31,10 @@ export default function TabLayout () {
             position: 'absolute',
           },
           default: {
-
+            paddingTop: 3,
+            backgroundColor: '#F3F7FA77',
+            height: 85,
+            // position: 'absolute',
           },
         }),
       }}>
@@ -53,7 +51,7 @@ export default function TabLayout () {
         options={{
           title: 'Study',
           // href: '/(root)/study-group',
-          tabBarIcon: ({color, focused}) => focused ? <BookOpenIconMini size={27} color={color} /> : <BookOpenIcon size={27} color={color} />,
+          tabBarIcon: ({color, focused}) => focused ? <Ionicons name='book' size={25} color={color} /> : <Ionicons name='book-outline' size={25} color={color} />,
         }}
       />
       <Tabs.Screen

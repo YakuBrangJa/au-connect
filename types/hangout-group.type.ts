@@ -2,6 +2,7 @@ export type HangoutGroupCategory = 'sport' | 'gaming' | 'music' | 'arcade' | 'tr
 
 export type HangoutGroup = {
   id: string,
+  createdAt: Date,
   title: string,
   time: Date,
   location: string,
