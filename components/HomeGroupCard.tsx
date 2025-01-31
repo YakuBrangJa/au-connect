@@ -30,7 +30,7 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
   onPress?: ((event: GestureResponderEvent) => void) | null
 }) {
   return (
-    <View className='bg-black rounded-2xl'>
+    <View className='bg-black rounded-[17px]'>
       <Pressable
         style={{
           ...CardShadow,
@@ -39,7 +39,7 @@ function HomeGroupCard ({className, group, onPressJoin, onPressLeave, onPress, i
         onPress={onPress}
         className=' active:opacity-90'
       >
-        <View className={cn('w-[260px] rounded-2xl overflow-hidden ', className)}>
+        <View className={cn('w-[260px] rounded-[15px] overflow-hidden ', className)}>
           <View className='h-[100px] relative'>
             <ImageBackground source={group.coverURL} className='w-full h-full object-cover justify-end relative '>
               {/* <ThemedText type='defaultSemiBold' className='z-10 !text-[14px] !text-white mb-1 ml-3'>{group.title}</ThemedText>

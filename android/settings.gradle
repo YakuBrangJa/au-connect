@@ -21,7 +21,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
   }
 }
 
-rootProject.name = 'AU-Connect'
+rootProject.name = 'AU Connect'
 
 dependencyResolutionManagement {
   versionCatalogs {

@@ -11,12 +11,13 @@ import {cn} from '@/libs/cn'
 import {HangoutGroup, HangoutGroupCategory} from '@/types/hangout-group.type'
 import {randomUUID} from 'expo-crypto'
 import React, {useCallback, useRef, useState} from 'react'
-import {Image, ImageBackground, KeyboardAvoidingView, LogBox, NativeSyntheticEvent, Platform, Pressable, SafeAreaView, ScrollView, Switch, Text, TextInput, TextInputFocusEventData, TextInputProps, TouchableHighlight, TouchableOpacity, View} from 'react-native'
+import {Image, ImageBackground, KeyboardAvoidingView, LogBox, NativeSyntheticEvent, Platform, Pressable, SafeAreaView, ScrollView, Switch, Text, TextInput, TextInputFocusEventData, View} from 'react-native'
 import DateTimePicker from 'react-native-ui-datepicker'
 import CommunityDateTimePicker from '@react-native-community/datetimepicker'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {format} from 'date-fns'
 import {router} from 'expo-router'
+import {validateGroupCreateForm} from '@/utils/validateGroupCreateForm'
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
@@ -82,18 +83,20 @@ function CreateScreen () {
   const {createHangoutGroup} = useUserGroup()
 
   const handleSubmit = useCallback(() => {
-    const payload: HangoutGroup = {
-      ...formState,
-      createdAt: new Date(),
-      id: randomUUID(),
-      participantCount: 1,
-      organiser: data,
-      coverURL: require('@/assets/images/cover/cover_1.jpg'),
-    }
+    validateGroupCreateForm(formState, () => {
+      const payload: HangoutGroup = {
+        ...formState,
+        createdAt: new Date(),
+        id: randomUUID(),
+        participantCount: 1,
+        organiser: data,
+        coverURL: require('@/assets/images/cover/cover_1.jpg'),
+      }
 
-    addGroup(payload)
-    createHangoutGroup(payload)
-    router.back()
+      addGroup(payload)
+      createHangoutGroup(payload)
+      router.back()
+    })
   }, [formState])
 
   return (

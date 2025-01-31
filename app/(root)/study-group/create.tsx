@@ -20,10 +20,11 @@ import DateTimePicker from 'react-native-ui-datepicker'
 import CommunityDateTimePicker from '@react-native-community/datetimepicker'
 import {format} from 'date-fns'
 import {router} from 'expo-router'
+import {validateGroupCreateForm} from '@/utils/validateGroupCreateForm'
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
 
-type FormState = {
+export type FormState = {
   title: string,
   location: string,
   description: string,
@@ -87,18 +88,20 @@ function CreateScreen () {
   const {createStudyGroup} = useUserGroup()
 
   const handleSubmit = useCallback(() => {
-    const payload: StudyGroup = {
-      ...formState,
-      createdAt: new Date(),
-      id: randomUUID(),
-      participantCount: 1,
-      organiser: data,
-      coverURL: require('@/assets/images/cover/cover_1.jpg'),
-    }
+    validateGroupCreateForm(formState, () => {
+      const payload: StudyGroup = {
+        ...formState,
+        createdAt: new Date(),
+        id: randomUUID(),
+        participantCount: 1,
+        organiser: data,
+        coverURL: require('@/assets/images/cover/cover_1.jpg'),
+      }
 
-    addGroup(payload)
-    createStudyGroup(payload)
-    router.back()
+      addGroup(payload)
+      createStudyGroup(payload)
+      router.back()
+    })
   }, [formState])
 
   return (

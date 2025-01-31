@@ -12,11 +12,11 @@ function WelcomeScreen () {
       <SafeAreaView className='flex-1 justify-center'>
         <View className='px-6 flex-1 justify-around'>
           <View></View>
-          <View className='gap-12 mt-[20px]'>
-            <Text className='text-center text-5xl font-bold'>AU Connect</Text>
+          <View className='gap-4 mt-[20px]'>
             <View className='flex-row justify-center bg-transparent'>
-              <Image source={require('../assets/images/welcome.png')} className='w-[250px] h-[190px]' />
+              <Image source={require('../assets/images/au-connect-logo-2.png')} className='w-[200px] h-[200px]' />
             </View>
+            {/* <Text className='text-center text-5xl font-bold'>AU Connect</Text> */}
           </View>
           <View className='mt-[70px]'>
             <ButtonShadowProvider>

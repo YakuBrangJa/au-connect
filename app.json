@@ -1,17 +1,20 @@
 {
   "expo": {
-    "name": "AU-Connect",
+    "name": "AU Connect",
     "slug": "AU-Connect",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/au-connect-icon-3.png",
     "scheme": "myapp",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "userInterfaceStyle": "light",
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.AUConnect"
+      "bundleIdentifier": "com.anonymous.AUConnect",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "userInterfaceStyle": "light",
@@ -40,6 +43,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8a232436-a1a6-43a6-b97e-85c02b196d0e"
+      }
+    },
+    "owner": "yakubrangja"
   }
 }
