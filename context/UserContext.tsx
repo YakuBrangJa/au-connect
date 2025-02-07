@@ -17,7 +17,7 @@ export function UserContextProvider ({
   children
 }: PropsWithChildren<{}>) {
   const [data, setData] = useState({
-    id: '123455',
+    id: 'user',
     name: 'Jason Wood'
   })
 

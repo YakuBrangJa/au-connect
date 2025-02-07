@@ -6,10 +6,12 @@ import Button, {ButtonShadowProvider, buttonTextVariants} from '@/components/ui/
 import {useUserGroup} from '@/context/UserGroupContext'
 import {StudyGroup} from '@/types/study-group.type'
 import {format} from 'date-fns'
-import React, {useCallback, useMemo} from 'react'
-import {Alert, GestureResponderEvent, Image, Platform, Pressable, ScrollView, Text, View} from 'react-native'
+import React, {useCallback, useMemo, useState} from 'react'
+import {Alert, GestureResponderEvent, Image, Modal, Platform, Pressable, ScrollView, Text, View} from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {router} from 'expo-router'
+import {Colors} from '@/constants/Colors'
+import GroupChatModal from '@/components/GroupChatModal'
 
 interface Props {
   group: StudyGroup
@@ -38,13 +40,14 @@ function StudyGroupModal ({group}: Props) {
     ])
   }, [group, leaveStudyGroup])
 
+
   return (
     <ThemedView className='flex-1 relative'>
-      {Platform.OS === 'android' &&
+      {/* {Platform.OS === 'android' && */}
         <Pressable onPress={() => router.back()} className='active:opacity-50 absolute top-[50px] left-[10px] z-10'>
           <Ionicons name="chevron-back" size={29} color={"#3B82F6"} />
         </Pressable>
-      }
+      {/* } */}
       <ParallaxScrollView
         headerImage={
           <Image
@@ -52,6 +55,7 @@ function StudyGroupModal ({group}: Props) {
             className='h-full w-full'
           />}
         headerHeight={220}
+        keyboardShouldPersistTaps='always'
       >
         <ThemedView className='p-6 pb-[60px] overflow-hidden'>
           <View className='gap-3'>
@@ -76,7 +80,23 @@ function StudyGroupModal ({group}: Props) {
               </View>
             </View>
           </View>
-          <View className='flex-row gap-2 mt-5'>
+
+          <View className='flex-row gap-2 justify-stretch mt-6'>
+            <GroupChatModal id={group.id} title={group.title} participantCount={group.participantCount} created_at={group.createdAt} isJoined={isJoined} handleJoinGroup={handlePressJoin} />
+            {isJoined ?
+              <Button className='gap-1 flex-1' onPress={handlePressLeave} variant="secondary" size='sm'>
+                <Ionicons name="log-out-outline" size={17} color="#101010" className=' rotate-180' />
+                <Text className={buttonTextVariants({variant: 'secondary'})}>Leave</Text>
+              </Button>
+              :
+              <Button className='gap-1 flex-1' onPress={handlePressJoin} size='sm'>
+                <Ionicons name="add" size={18} color="#ffffff" />
+                <Text className={buttonTextVariants({})}>Join Group</Text>
+              </Button>
+            }
+          </View>
+
+          <View className='flex-row gap-2 mt-6'>
             {group.category?.map(category => <Badge key={category}>{category}</Badge>)}
           </View>
           <View className='mt-6'>
@@ -84,28 +104,6 @@ function StudyGroupModal ({group}: Props) {
           </View>
         </ThemedView>
       </ParallaxScrollView>
-      <View className='absolute w-full px-6' style={Platform.select({
-        android: {
-          bottom: 20
-        },
-        ios: {
-          bottom: 48
-        }
-      })}>
-        {isJoined ?
-          <Button className='gap-2' onPress={handlePressLeave} variant="secondary">
-            <Ionicons name="log-out-outline" size={20} color="#101010" className=' rotate-180' />
-            <Text className={buttonTextVariants({variant: 'secondary'})}>Joined</Text>
-          </Button>
-          :
-          <ButtonShadowProvider>
-            <Button className='gap-2' onPress={handlePressJoin}>
-              <Ionicons name="add" size={21} color="#ffffff" />
-              <Text className={buttonTextVariants({})}>Join Group</Text>
-            </Button>
-          </ButtonShadowProvider>
-        }
-      </View>
     </ThemedView>
   )
 }

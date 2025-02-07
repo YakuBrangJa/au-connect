@@ -14,7 +14,7 @@ function WelcomeScreen () {
           <View></View>
           <View className='gap-4 mt-[20px]'>
             <View className='flex-row justify-center bg-transparent'>
-              <Image source={require('../assets/images/au-connect-logo-2.png')} className='w-[200px] h-[200px]' />
+              <Image source={require('../assets/images/au-connect-logo-2.png')} className='w-[190px] h-[190px]' />
             </View>
             {/* <Text className='text-center text-5xl font-bold'>AU Connect</Text> */}
           </View>

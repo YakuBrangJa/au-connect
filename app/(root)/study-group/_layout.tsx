@@ -37,10 +37,9 @@ export default function StudyGroupLayout () {
         fontWeight: 700
       }
     }} />
-    <Stack.Screen name="[group]" options={{
-      presentation: 'modal'
-    }}
-    />
     <Stack.Screen name="search" options={{headerShown: false, animation: 'fade', animationDuration: 200}} />
+    <Stack.Screen name="[group]" options={{
+      // presentation: 'modal'
+    }} />
   </Stack>;
 }
