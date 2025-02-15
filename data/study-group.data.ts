@@ -4,17 +4,17 @@ import {getStudyCoverImg} from "@/utils/getStudyCoverImg";
 
 export const study_group_data: StudyGroup[] = [
   {
-    id: '1',
-    createdAt: new Date('2025-01-20T08:00:00'),
-    title: 'Business Strategies Workshop',
-    time: new Date('2025-02-01T10:00:00'),
-    location: 'Conference Room A',
-    description: 'Join this interactive workshop designed to teach advanced business strategies and decision-making techniques. You will explore case studies, collaborate on real-world challenges, and gain insights into the best practices of successful entrepreneurs and managers.',
-    participantLimit: 30,
-    participantCount: 15,
-    category: ['business'],
-    coverURL: getStudyCoverImg(),
-    organiser: {id: '101', name: 'Alice Johnson'}
+    id: '9',
+    createdAt: new Date('2025-02-24T15:10:00'),
+    title: 'Advanced Coding Bootcamp',
+    time: new Date('2025-03-09T09:00:00'),
+    location: 'Tech Lab 4',
+    description: 'Take your coding skills to the next level in this intensive bootcamp. Topics include algorithms, data structures, and best practices for building scalable applications. Ideal for developers ready to tackle advanced challenges.',
+    participantLimit: 35,
+    participantCount: 28,
+    category: ['technology'],
+    coverURL: require('../assets/images/user-image/coding.jpg'),
+    organiser: {id: '106', name: 'Frank Miller'}
   },
   {
     id: '2',
@@ -26,8 +26,21 @@ export const study_group_data: StudyGroup[] = [
     participantLimit: 20,
     participantCount: 12,
     category: ['science', 'engineering'],
-    coverURL: getStudyCoverImg(),
+    coverURL: require('../assets/images/user-image/physics.webp'),
     organiser: {id: '102', name: 'Bob Smith'}
+  },
+  {
+    id: '1',
+    createdAt: new Date('2025-01-20T08:00:00'),
+    title: 'Business Strategies Workshop',
+    time: new Date('2025-02-01T10:00:00'),
+    location: 'Conference Room A',
+    description: 'Join this interactive workshop designed to teach advanced business strategies and decision-making techniques. You will explore case studies, collaborate on real-world challenges, and gain insights into the best practices of successful entrepreneurs and managers.',
+    participantLimit: 30,
+    participantCount: 15,
+    category: ['business'],
+    coverURL: getStudyCoverImg(),
+    organiser: {id: '101', name: 'Alice Johnson'}
   },
   {
     id: '3',
@@ -65,20 +78,20 @@ export const study_group_data: StudyGroup[] = [
     participantLimit: 20,
     participantCount: 10,
     category: ['philosophy', 'language'],
-    coverURL: getStudyCoverImg(),
+    coverURL: require('../assets/images/user-image/philosophy.jpeg'),
     organiser: {id: '105', name: 'Emma Lee'}
   },
   {
     id: '6',
-    createdAt: new Date('2025-01-25T13:20:00'),
+    createdAt: new Date('2025-02-10T13:20:00'),
     title: 'Language Learning Techniques',
-    time: new Date('2025-02-06T11:00:00'),
+    time: new Date('2025-03-26T11:00:00'),
     location: 'Language Lab 1',
     description: 'Discover effective methods for mastering new languages quickly and efficiently. From immersion techniques to mnemonic devices, this session provides tools and tips to boost your fluency and confidence.',
     participantLimit: undefined,
     participantCount: 10,
     category: ['language'],
-    coverURL: getStudyCoverImg(),
+    coverURL: require('../assets/images/user-image/language.png'),
     organiser: {id: '106', name: 'Frank Miller'}
   },
   {
@@ -104,22 +117,10 @@ export const study_group_data: StudyGroup[] = [
     participantLimit: 50,
     participantCount: 45,
     category: ['art', 'technology'],
-    coverURL: getStudyCoverImg(),
+    coverURL: require('../assets/images/cover/cover_2.jpg'),
     organiser: {id: '107', name: 'George Williams'}
   },
-  {
-    id: '9',
-    createdAt: new Date('2025-01-24T15:10:00'),
-    title: 'Advanced Coding Bootcamp',
-    time: new Date('2025-03-09T09:00:00'),
-    location: 'Tech Lab 4',
-    description: 'Take your coding skills to the next level in this intensive bootcamp. Topics include algorithms, data structures, and best practices for building scalable applications. Ideal for developers ready to tackle advanced challenges.',
-    participantLimit: 35,
-    participantCount: 28,
-    category: ['technology'],
-    coverURL: getStudyCoverImg(),
-    organiser: {id: '106', name: 'Frank Miller'}
-  },
+
   {
     id: '10',
     createdAt: new Date('2024-06-26T15:10:00'),
@@ -130,7 +131,7 @@ export const study_group_data: StudyGroup[] = [
     participantLimit: 25,
     participantCount: 20,
     category: ['art', 'music'],
-    coverURL: getStudyCoverImg(),
+    coverURL: require('../assets/images/user-image/music_history.webp'),
     organiser: {id: '106', name: 'Frank Miller'}
   },
 ];

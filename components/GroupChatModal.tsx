@@ -124,9 +124,11 @@ function GroupChatModal ({id, title, participantCount, created_at, isJoined, han
                 {participantCount} participants
               </ThemedText>
             </View>
-            <TouchableOpacity onPress={() => setModalVisible(false)} hitSlop={20}>
+            <Pressable onPress={() => setModalVisible(false)} hitSlop={15}
+              className=' active:opacity-70 active:bg-slate-200 rounded-full p-0.5'
+            >
               <Ionicons name="close-outline" size={26} color={'#686868'} />
-            </TouchableOpacity>
+            </Pressable>
           </ThemedView>
 
           {/* Messages Area */}

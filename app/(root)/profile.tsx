@@ -1,16 +1,18 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {Feather, Ionicons} from '@expo/vector-icons';
 import { ThemedView } from '@/components/ThemedView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { profileSettings } from '@/data/profile-settings.data';
 import { PencilIcon, UserCircleIcon } from 'react-native-heroicons/micro';
 import { useNavigation } from "@react-navigation/native";
 import { router } from 'expo-router';
+import Avatar from '@/components/Avatar';
+import {useUser} from '@/context/UserContext';
 const SettingsScreen = () => {
- 
+  const {data} = useUser()
   return (
-    <><ThemedView className='flex-1'>
+    <><ThemedView className='flex-1' lightColor='#ffffff'>
       <SafeAreaView className='flex-1'>
       <View className="flex-1 bg-white">
       {/* Header */}
@@ -23,14 +25,14 @@ const SettingsScreen = () => {
      
       <View className="items-center my-6  "> 
       <View className='relative'>
-      <UserCircleIcon size={100} color="red"/>
-      <TouchableOpacity className="absolute bottom-3 left-20 bg-gray-200 p-1 rounded-full border border-white">
-          <PencilIcon size={16} color="black" />
-        </TouchableOpacity>
+              <Avatar name={data.name} size={100} />
+              {/* <TouchableOpacity className="absolute bottom-1 left-20 bg-gray-200 p-1.5 rounded-full border border-white">
+                <Feather name="edit-2" size={14} color="black" />
+        </TouchableOpacity> */}
       </View>
       
-        <Text className="text-lg font-bold mt-2">Lucas Scott</Text>
-        <Text className="text-gray-500">@lucasscott3</Text>
+            <Text className="text-lg font-bold mt-2">{data.name}</Text>
+            <Text className="text-gray-500">json@gmail.com</Text>
       </View>
 
       {/* Settings Options */}

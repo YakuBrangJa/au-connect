@@ -9,9 +9,11 @@ import {study_group_data} from '@/data/study-group.data'
 import {encodeParams} from '@/utils/encodeParam'
 import {router} from 'expo-router'
 import React, {useCallback, useMemo} from 'react'
-import {Alert, Image, Pressable, ScrollView, Text, TouchableOpacity, View} from 'react-native'
+import {Alert, Image, Platform, Pressable, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import PomodoroCard from '@/components/PomodoroCard'
+import pomodoroSessions from '@/data/pomodoro.data'
 
 function Index () {
   const {joinStudyGroup, joinedStudyGroups, joinedHangoutGroups, joinHangoutGroup, leaveStudyGroup, leaveHangoutGroup} = useUserGroup()
@@ -56,12 +58,20 @@ function Index () {
       <SafeAreaView className='flex-1'>
         <View className='p-4 flex-row justify-between items-center'>
           <ThemedText type='title'>AU Connect</ThemedText>
-          <TouchableOpacity onPress={() => router.navigate('/notification')} activeOpacity={0.5} className='mr-1'>
-            {/* <BellIcon color={'#101010'} size={24} /> */}
+          {/* <TouchableOpacity onPress={() => router.navigate('/notification')} activeOpacity={0.5} className='mr-1'>
             <Ionicons name="notifications-sharp" size={24} color="#202020" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
-        <ScrollView>
+        <ScrollView
+          style={Platform.select({
+            ios: {
+              marginBottom: 50
+            },
+            android: {
+              paddingBottom: 10
+            }
+          })}
+        >
           <View className='mt-5'>
             <View className='px-6 pr-4 flex-row justify-between items-center'>
               <ThemedText type='subtitle2'>Study Groups</ThemedText>
@@ -123,10 +133,15 @@ function Index () {
           <View className='mt-4'>
             <View className='px-6 pr-4 flex-row justify-between items-center'>
               <ThemedText type='subtitle2'>Live Pomodoros</ThemedText>
-              <TextButton>See more</TextButton>
+              <TextButton onPress={() => router.navigate('/(root)/pomodoro')}>See more</TextButton>
             </View>
-            <View className='h-[300px] px-6'>
 
+            <View
+              className='py-4 gap-3 px-6'
+            >
+              {pomodoroSessions.slice(0, 4).map(session => (
+                <PomodoroCard key={session.title} pomodoro={session} />
+              ))}
             </View>
           </View>
         </ScrollView>

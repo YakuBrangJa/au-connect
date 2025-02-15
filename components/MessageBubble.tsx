@@ -16,7 +16,7 @@ function MessageBubble ({id, message, sender, isMyMessage, showSenderName}: Prop
   return (
     <View className='flex-row gap-2'>
       {!isMyMessage && <Avatar name={sender.name} size={38} />}
-      <ThemedView className={cn("p-3 py-2 rounded-lgself-start rounded-2xl max-w-[75%]", isMyMessage ? 'ml-auto !bg-primary/20' : '!bg-gray-100')}>
+      <ThemedView className={cn("p-3 py-2 rounded-lgself-start rounded-2xl max-w-[80%]", isMyMessage ? 'ml-auto !bg-primary/20' : '!bg-gray-100')}>
         {showSenderName && <ThemedText className='!text-[14.5px] !font-medium'>{sender.name}</ThemedText>}
         <ThemedText className='!text-[14.75px] mt-0.5' lightColor='#484848'>{message}</ThemedText>
       </ThemedView>

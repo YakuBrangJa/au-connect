@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { notifications as data } from "@/data/notification.data";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
+import {ThemedView} from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileIcon from "@/components/ui/ProfileIcon";
-import { BellIcon } from "react-native-heroicons/outline";
 
 const categories = {
   all: "All",
